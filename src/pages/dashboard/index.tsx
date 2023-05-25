@@ -18,6 +18,7 @@ import { RecentSales } from "./components/recent-sales"
 import { Search } from "./components/search"
 import TeamSwitcher from "./components/team-switcher"
 import { UserNav } from "./components/user-nav"
+import Loading from "@/components/sophon/loading/loading"
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -27,6 +28,7 @@ export const metadata: Metadata = {
 export default function DashboardPage() {
   return (
     <>
+      
       <div className="md:hidden">
         <Image
           src="/examples/dashboard-light.png"

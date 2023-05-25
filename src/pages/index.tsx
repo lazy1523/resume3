@@ -2,13 +2,16 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import { Button } from '@/components/ui/button'
 import { useRecoilState } from 'recoil';
-import { countState } from '@/store/countState';
-
+import { countState } from '@/store/globalState';
+import { useToast } from "@/components/ui/use-toast";
+import useAxios from "@/src/lib/useAxios";
+import Loading from '@/components/sophon/loading/loading';
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const [count, setCount] = useRecoilState(countState);
-
+  const { toast } = useToast()
+  const { get } = useAxios()
   return (
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
@@ -19,10 +22,11 @@ export default function Home() {
           <code className="font-mono font-bold">src/pages/index.tsx</code>
         </p>
         <div>
-      Count: {count}
-      <button onClick={() => setCount(count + 1)}>Increment</button>
-    </div>
-        <Button>Hello Shadcn</Button>
+      
+          Count: {count}
+          <Button onClick={() => setCount(count + 1)}>Increment</Button>
+        </div>
+        <Button onClick={()=>get('http://wwww.localhost:8088/api')}>Hello Shadcn</Button>
         <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
           <a
             className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
