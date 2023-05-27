@@ -13,6 +13,7 @@ function useLogin() {
             // 在这里处理登录成功的操作，例如设置全局的登录状态，存储token等
             const userData = response.data;
             localStorage.setItem('user', JSON.stringify(userData));
+            localStorage.setItem('token', userData.token);
             setUser(userData);
             window.location.href = '/';
 
