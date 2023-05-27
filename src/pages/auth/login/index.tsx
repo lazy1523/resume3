@@ -80,6 +80,13 @@ export default function LoginPage() {
             </Button>
           </div>
         </CardFooter>
+        <CardFooter>
+          <div className="w-full grid gap-2">
+            <Button variant="outline" onClick={()=>handleLogin()} >
+            <Icons.media className="mr-2 h-4 w-4" />
+              MetaMask</Button>
+          </div>
+        </CardFooter>
 
       </Card>
     </div>

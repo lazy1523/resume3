@@ -65,6 +65,27 @@ const useAxios = () => {
     // 添加请求拦截器
     instance.interceptors.request.use(function (config) {
         setLoadingVisible(true);
+        const storedUserData:any = localStorage.getItem('user');
+        if (storedUserData?.expiresAt) {
+            const currentTime = new Date().getTime();
+            const expiresAt = new Date(storedUserData.expiresAt).getTime();
+        
+            if (currentTime > expiresAt) {
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                toast({
+                    title: '登录过期',
+                    description:"登录过期，请重新登录",
+                    variant: "destructive",
+                    duration: 1500
+                });
+                if (typeof window !== 'undefined') {
+                    window.location.href = '/auth/login';
+                }
+            }
+        }
+        
+
         return config;
     }, function (error) {
         setLoadingVisible(false);

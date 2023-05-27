@@ -18,7 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
     useEffect(() => {
       const storedUserData = localStorage.getItem('user');
-      if (storedUserData) {
+      if (storedUserData ) {
         setUser(JSON.parse(storedUserData));
       } else if (!accessibleRoutesWhenNotLoggedIn.includes(router.pathname)) {
         router.push('/auth/login');
