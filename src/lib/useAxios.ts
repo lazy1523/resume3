@@ -1,10 +1,51 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { useToast } from '@/components/ui/use-toast';
-import { CheckCheck } from "lucide-react"
 import { useLoading } from "@/store/globalState";
 
-
 type HttpMethod = 'get' | 'delete' | 'head' | 'options' | 'post' | 'put' | 'patch';
+
+function handleError(error: any) {
+    if (error.response) {
+        switch (error.response.status) {
+            case 400:
+                return {
+                    title: '请求错误',
+                    description: '服务器无法理解请求语义.'
+                };
+            case 401:
+                return {
+                    title: '未授权',
+                    description: '需要身份验证，登录可能已过期.'
+                };
+            case 404:
+                return {
+                    title: '资源未找到',
+                    description: '服务器找不到请求的资源.'
+                };
+            case 500:
+                return {
+                    title: '服务器错误',
+                    description: '服务器遇到错误，无法完成请求.'
+                };
+            default:
+                return {
+                    title: '未知错误',
+                    description: error.message
+                };
+        }
+    } else if (error.request) {
+        return {
+            title: '请求超时',
+            description: '服务器没有响应，可能是网络问题或服务器出错.'
+        };
+    } else {
+        return {
+            title: '请求错误',
+            description: error.message
+        };
+    }
+}
+
 
 const useAxios = () => {
     const { toast } = useToast();
@@ -13,7 +54,7 @@ const useAxios = () => {
 
     // 创建axios实例
     const instance = axios.create({
-        baseURL: process.env.NODE_ENV === 'production' ? process.env.NEXT_PUBLIC_API_BASE_URL : 'http://localhost:3000',
+        baseURL: process.env.NODE_ENV === 'production' ? process.env.NEXT_PUBLIC_API_BASE_URL :  process.env.NEXT_PUBLIC_API_DEV_URL,
         timeout: 10000,
         headers: {
             'Content-Type': 'application/json',
@@ -36,6 +77,13 @@ const useAxios = () => {
         return response;
     }, function (error) {
         setLoadingVisible(false);
+        if (error.response && error.response.status === 401) {
+            if (typeof window !== 'undefined') {
+                // 清除本地存储中的token并跳转到登录页面
+                localStorage.removeItem('token');
+                window.location.href = '/auth/login';
+            }
+        }
         return Promise.reject(error);
     });
 
@@ -48,18 +96,19 @@ const useAxios = () => {
                     title: '请求成功',
                     description: `请求成功，用时${requestTime}秒.`,
                     duration: 1500,
-
                 });
                 return response;
             })
             .catch((error) => {
+                const { title, description } = handleError(error);
                 toast({
-                    title: '请求失败',
-                    description: error.message,
+                    title,
+                    description,
                     variant: "destructive",
                     duration: 1500
                 });
-                throw error;
+                console.error(error)
+                return error;
             });
     }
 
