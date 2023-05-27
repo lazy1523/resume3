@@ -15,10 +15,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
     // Define the whitelist of routes that are accessible when not logged in
     const accessibleRoutesWhenNotLoggedIn = ['/auth/login', '/auth/forgot', '/auth/register', '/'];
-    
+
     useEffect(() => {
       const storedUserData = localStorage.getItem('user');
-      console.log(storedUserData)
       if (storedUserData) {
         setUser(JSON.parse(storedUserData));
       } else if (!accessibleRoutesWhenNotLoggedIn.includes(router.pathname)) {
