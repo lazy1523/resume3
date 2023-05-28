@@ -13,7 +13,10 @@ import { Icons } from "@/components/ui/icons"
 import { Metadata } from "next"
 import Link from 'next/link';
 import useLogin from "@/src/pages/api/auth/login";
-
+import { useEffect, useState } from "react"
+import { loadingVisibleState } from "@/store/globalState"
+import { useRecoilState } from "recoil"
+import { Loader2 } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Authentication",
@@ -21,9 +24,19 @@ export const metadata: Metadata = {
 }
 
 export default function LoginPage() {
-  const login= useLogin();
+  const login = useLogin();
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [loadingVisible] = useRecoilState(loadingVisibleState);
+
+
   const handleLogin = async () => {
-    await login('test1@example.com','string');
+    await login(email, password);
+  }
+  const handleKeyDown = (event: any) => {
+    if (event.key === 'Enter') {
+      handleLogin();
+    }
   }
 
   return (
@@ -39,19 +52,28 @@ export default function LoginPage() {
         <CardContent className="grid gap-4">
           <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" placeholder="m@example.com" />
+            <Input id="email" type="email" value={email} onChange={(e) => {
+              setEmail(e.target.value)
+            }} placeholder="m@example.com" />
           </div>
           <div className="grid gap-2">
             <Label htmlFor="password">Password</Label>
-            <Input id="password" type="password" />
+            <Input value={password}
+              onKeyDown={(e)=>handleKeyDown(e)}
+              onChange={(e) => {
+                setPassword(e.target.value)
+              }} id="password" type="password" />
             <CardDescription ><a href="/auth/forgot" style={{ textDecoration: 'underline', color: '#1890ff' }}>Forgot Password?</a></CardDescription>
           </div>
-
 
         </CardContent>
         <CardFooter>
           <div className="w-full grid gap-2">
-            <Button onClick={()=>handleLogin()} >Login</Button>
+            <Button disabled={loadingVisible} onClick={() => handleLogin()} >
+              {
+                loadingVisible ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null
+              }
+              Login</Button>
             <Link href={"/auth/register"}>
               <Button className="w-full">Register</Button>
             </Link>
@@ -82,8 +104,7 @@ export default function LoginPage() {
         </CardFooter>
         <CardFooter>
           <div className="w-full grid gap-2">
-            <Button variant="outline" onClick={()=>handleLogin()} >
-            <Icons.media className="mr-2 h-4 w-4" />
+            <Button variant="outline" onClick={() => handleLogin()} >
               MetaMask</Button>
           </div>
         </CardFooter>

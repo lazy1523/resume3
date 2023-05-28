@@ -29,8 +29,8 @@ function handleError(error: any) {
                 };
             default:
                 return {
-                    title: '未知错误',
-                    description: error.message
+                    title: '请求错误',
+                    description: error.response.data.msg
                 };
         }
     } else if (error.request) {
@@ -41,7 +41,7 @@ function handleError(error: any) {
     } else {
         return {
             title: '请求错误',
-            description: error.message
+            description: error.response.data.msg
         };
     }
 }
@@ -79,6 +79,7 @@ const useAxios = () => {
                     variant: "destructive",
                     duration: 1500
                 });
+                
                 if (typeof window !== 'undefined') {
                     window.location.href = '/auth/login';
                 }
@@ -128,8 +129,8 @@ const useAxios = () => {
                     variant: "destructive",
                     duration: 1500
                 });
-                console.error(error)
-                return error;
+                // console.error(error);
+                throw error; 
             });
     }
 
