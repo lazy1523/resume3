@@ -3,7 +3,7 @@ import Image from "next/image"
 
 import { Separator } from "@/components/ui/separator"
 import { SidebarNav } from "@/components/sophon/settings/components/sidebar-nav"
-import  Profile from "@/components/sophon/settings/profile"
+import Profile from "@/components/sophon/settings/profile"
 import Account from '@/components/sophon/settings/account';
 import Appearance from '@/components/sophon/settings/appearance';
 import Notifications from '@/components/sophon/settings/notifications';

@@ -24,7 +24,6 @@ export default function App({ Component, pageProps }: AppProps) {
       }
     }, [router, setUser]);
 
-    // Decide whether to use Layout based on the route
     if (accessibleRoutesWhenNotLoggedIn.includes(router.pathname)) {
       return <Component {...pageProps} />
     }
