@@ -64,8 +64,8 @@ export default function LoginPage() {
                 setPassword(e.target.value)
               }} id="password" type="password" />
             <CardDescription >
-              <Link href="/auth/forgot" passHref>
-                <a  style={{ textDecoration: 'underline', color: '#1890ff' }}>Forgot Password?</a>
+              <Link href="/auth/forgot" style={{ textDecoration: 'underline', color: '#1890ff' }} passHref>
+              Forgot Password?
               </Link>  
             </CardDescription>
           </div>

@@ -27,10 +27,10 @@ export default function ForgotPage() {
 
         <CardHeader className="space-y-1">
           <CardDescription>
-            <Link href="/auth/login" passHref>
-              <a className="flex" style={{ color: '#1890ff' }}><Icons.chevronLeft className="h-5 w-5" /> Login</a>
+            <Link style={{ color: '#1890ff' }} href="/auth/login" passHref>
+            <Icons.chevronLeft className="h-5 w-5" /> Login
+              
             </Link>
-
 
           </CardDescription>
           <CardTitle className="text-2xl">Forgot Passowrd</CardTitle>
