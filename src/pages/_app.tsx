@@ -22,7 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
       } else if (!accessibleRoutesWhenNotLoggedIn.includes(router.pathname)) {
         router.push('/auth/login');
       }
-    }, [router, setUser]);
+    }, [router, setUser,accessibleRoutesWhenNotLoggedIn]);
 
     if (accessibleRoutesWhenNotLoggedIn.includes(router.pathname)) {
       return <Component {...pageProps} />

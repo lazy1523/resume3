@@ -63,7 +63,11 @@ export default function LoginPage() {
               onChange={(e) => {
                 setPassword(e.target.value)
               }} id="password" type="password" />
-            <CardDescription ><a href="/auth/forgot" style={{ textDecoration: 'underline', color: '#1890ff' }}>Forgot Password?</a></CardDescription>
+            <CardDescription >
+              <Link href="/auth/forgot" passHref>
+                <a  style={{ textDecoration: 'underline', color: '#1890ff' }}>Forgot Password?</a>
+              </Link>  
+            </CardDescription>
           </div>
 
         </CardContent>

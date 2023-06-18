@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Icons } from "@/components/ui/icons"
 import { Metadata } from "next"
+import Link from "next/link"
 
 
 export const metadata: Metadata = {
@@ -23,12 +24,14 @@ export default function ForgotPage() {
     <div className="flex items-center justify-center min-h-screen [&>div]:w-1/4">
 
       <Card>
-        
+
         <CardHeader className="space-y-1">
-        <CardDescription>
-            <a href="/auth/login" className="flex" style={{ color: '#1890ff' }}>
-            <Icons.chevronLeft className="h-5 w-5"  /> Login
-            </a>
+          <CardDescription>
+            <Link href="/auth/login" passHref>
+              <a className="flex" style={{ color: '#1890ff' }}><Icons.chevronLeft className="h-5 w-5" /> Login</a>
+            </Link>
+
+
           </CardDescription>
           <CardTitle className="text-2xl">Forgot Passowrd</CardTitle>
           <CardDescription>

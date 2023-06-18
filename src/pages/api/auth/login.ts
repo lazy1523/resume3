@@ -15,7 +15,7 @@ function useLogin() {
             setUser(userData);
             window.location.href = '/';
             return response.data;
-    }, [post]);
+    }, [post,setUser]);
 
     return login;
 }
