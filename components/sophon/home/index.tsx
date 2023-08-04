@@ -23,7 +23,7 @@ const Home = () => {
                     <span>交易高手</span>
                     <span>中期投资者</span>
                     <span>Gas搅拌机</span>
-                    <span>投研专家</span>
+                    <span>Mirror 投研专家</span>
                     <span>顶级Hacker House校友</span>
                     <p className="text-xl">总分：115€</p>
                 </div>
