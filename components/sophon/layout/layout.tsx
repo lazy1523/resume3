@@ -10,20 +10,19 @@ interface LayoutProps {
 }
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
-        <div className="flex flex-col min-h-screen">
-            <header className="flex-shrink-0">
-                <div className="border-b">
+        <div className="bg-resumers-drak flex flex-col min-h-screen overflow-y-hidden">
+            <header className="bg-resumers-drak flex-shrink-0">
+                <div className="">
                     <div className="flex h-16 items-center px-4">
-                        <TeamSwitcher />
-                        <MainNav className="mx-6" />
+                        {/* <TeamSwitcher /> */}
+                        {/* <MainNav className="mx-6" /> */}
                         <div className="ml-auto flex items-center space-x-4">
-                            <Search />
                             <UserNav />
                         </div>
                     </div>
                 </div>
             </header>
-            <main className='flex-grow container mx-auto p-4'>
+            <main className='flex-grow container mx-auto items-center p-4'>
                 {children}
             </main>
             

@@ -1,17 +1,15 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import { Button } from '@/components/ui/button'
-import { useRecoilState } from 'recoil';
-import { countState, loadingVisibleState } from '@/store/globalState';
-import { useToast } from "@/components/ui/use-toast";
-import useAxios from "@/src/lib/useAxios";
-import { Loader2 } from "lucide-react"
-import DashboardPage from '@/components/sophon/dashboard';
 
-const inter = Inter({ subsets: ['latin'] })
+import HomePage from '@/components/sophon/home/index';
+
+
 
 export default function Home() {
   return (
-     <DashboardPage />
+    <div className='flex flex-col h-90 items-center justify-center'>
+      <div className='text-3xl text-gray-300 mb-10'>Resume <span className='text-6xl text-white'>3</span></div>
+      <HomePage />
+    </div>
+
+
   )
 }
