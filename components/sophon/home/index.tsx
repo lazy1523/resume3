@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button';
 import styles from './index.module.css';
 
 const Home = () => {
@@ -20,12 +21,13 @@ const Home = () => {
                 </svg>
                 <div className={styles.textBox}>
                     <p className="text-3xl">Ethereum</p>
-                    <span>交易高手</span>
-                    <span>中期投资者</span>
-                    <span>Gas搅拌机</span>
-                    <span>Mirror 投研专家</span>
-                    <span>顶级Hacker House校友</span>
-                    <p className="text-xl">总分：115€</p>
+                    <span>****</span>
+                    <span>*****</span>
+                    <span>*** ***</span>
+                    <span>****** ****</span>
+                    <span>** ****** ***** **</span>
+                    <p className="text-xl">总分：***€</p>
+                    <Button variant="ghost">MINT </Button>
                 </div>
             </div>
  
