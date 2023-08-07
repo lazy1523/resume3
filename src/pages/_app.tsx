@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <ComponentWithUser Component={Component} {...pageProps} />
       <Toaster />
       {/*  解开注释即可启用全局loading 会破坏用户的心流  */}
-      {/* <Loading/> */}
+      <Loading/>
     </RecoilRoot>
   )
 }

@@ -17,6 +17,21 @@ export const userState = atom<{ token: string; user: any } | null>({
   },
 });
 
+export const addressState = atom({
+  key: 'addressState',
+  default: {txCount:'',totalGasUsed:'',intervalInDays:'',textword:'',fraction:0},
+});
+
+export const textState=atom({
+  key:'textState',
+  default:''
+})
+
+export const keyWordState = atom({
+  key: 'keyWordState',
+  default: [],
+})
+
 
 export const countState = atom({
   key: 'countState',
