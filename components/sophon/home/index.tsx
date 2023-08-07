@@ -120,7 +120,7 @@ const Home = () => {
         if (typeof ethereum !== 'undefined') {
             const provider = new ethers.providers.Web3Provider(ethereum);
             const signer = provider.getSigner();
-            const contract = new ethers.Contract('0x4e23FB54e4d22953E63713D9176548EBA7aD3E09', ResumesNFT.abi, signer);
+            const contract = new ethers.Contract('0x7Ae483936E22f9B5AdC8C3fa8Cf1Aad9325563E8', ResumesNFT.abi, signer);
             try {
                 const mint = await contract.mint(cid, { value: ethers.utils.parseEther("0.001") })
                 await mint.wait();
