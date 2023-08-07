@@ -47,11 +47,11 @@
   color: lightgrey;
 }
 
-.card:hover > .textBox {
+.card > .textBox {
   opacity: 1;
 }
 
-.card:hover > .img {
+.card > .img {
   height:100%;
   filter: blur(7px);
   animation: anim 3s infinite;
@@ -71,7 +71,7 @@
   }
 }
 
-.card:hover {
+.card {
   transform: scale(1.04) rotate(-1deg);
 }
 
