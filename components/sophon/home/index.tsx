@@ -147,7 +147,7 @@ const Home = () => {
                 Body: blob,
             };
             await client.putObject({ ...uploadParams });
-            const pngCid = await queryEtag(card_key);
+            const pngCid = await queryEtag('png/'+card_key);
             console.log(pngCid);
             // 这里应该去除 ""
             const new_pngCid = pngCid!.replace(/"/g, '');
