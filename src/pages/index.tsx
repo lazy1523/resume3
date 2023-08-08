@@ -43,6 +43,10 @@ export default function Home() {
           alert("API 接口速率限制了，请人少的时候来。");
           source.close();
         }
+        return () => {
+          source.close(); // 关闭旧的 EventSource 实例
+          setData(""); // 清空旧的数据
+        };
 
      
       
