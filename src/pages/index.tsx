@@ -20,7 +20,7 @@ export default function Home() {
   useEffect(() => {
     if (account) {
       setLoadingVisible(true);
-      try{
+      
         const source = new EventSource(`https://api.resumes3.xyz/api/v1/stream/${account}`);
         source.onmessage = function (event) {
           setLoadingVisible(false);
@@ -32,18 +32,17 @@ export default function Home() {
         source.addEventListener('end', function(event) {
           console.log('Stream ended');
           source.close();
-          
            get(`https://api.resumes3.xyz/api/v1/resumes/${account}`).then((res)=>{
             console.log(res.data.data);
             setAddressState(res.data.data)
           })
         });
-      }catch(e){
-        console.log(e)
-        alert("API 接口速率限制了，请人少的时候来。");
-      }
-     
-      
+
+        source.onerror = function(event) {
+          console.log(event);
+          alert("API 接口速率限制了，请人少的时候来。");
+          source.close();
+        }      
     }
 
   }, [account]);
