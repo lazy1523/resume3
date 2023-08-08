@@ -128,6 +128,8 @@ const Home = () => {
                 alert("恭喜你，主网TX增加了一条。愿你亏Gas不亏钱，永远（3，3），永远10倍起！！")
             } catch (err) {
                 window.console.log('Error: ', err)
+            }finally{
+                setLoadingVisible(false);
             }
         }
     }
