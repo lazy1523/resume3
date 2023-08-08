@@ -48,8 +48,6 @@ export default function Home() {
           setData(""); // 清空旧的数据
         };
 
-     
-      
     }
 
   }, [account]);
